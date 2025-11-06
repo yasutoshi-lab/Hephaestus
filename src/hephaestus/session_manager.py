@@ -69,15 +69,15 @@ class SessionManager:
             logger.info(f"Created tmux session: {self.session_name}")
 
             # Enable mouse mode for easier pane navigation
-            session.set_option("mouse", "on", _global=True)
-
-            # Enable pane border titles
-            session.set_option("pane-border-status", "top", _global=False)
-            session.set_option("pane-border-format", "#{pane_index}: #{pane_title}", _global=False)
-            logger.info("Enabled mouse mode and pane border titles")
+            session.set_option("mouse", "on", global_=True)
 
             # Get the default window
             window = session.windows[0]
+
+            # Enable pane border titles (window options)
+            window.set_window_option("pane-border-status", "top")
+            window.set_window_option("pane-border-format", "#{pane_index}: #{pane_title}")
+            logger.info("Enabled mouse mode and pane border titles")
 
             # Number of total panes needed (1 Master + N Workers)
             total_panes = 1 + self.config.workers.count
