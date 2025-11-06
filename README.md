@@ -40,7 +40,7 @@ Hephaestus-CLIは、tmuxを活用して複数のClaude Codeエージェントを
 
 - Python 3.10以上
 - tmux（システムにインストール済み）
-- claude-code CLI（インストール・設定済み）
+- claude CLI（インストール・設定済み）
 - Linuxオペレーティングシステム
 
 ## インストール
@@ -119,7 +119,7 @@ hephaestus attach --create
 - tmuxキーバインドでペイン間を移動（デフォルト: `Ctrl+b` → 矢印キー）
 - Masterペインで高レベルのタスクを入力
 - Workerが自動的にMasterからサブタスクを受け取り実行
-- すべてのエージェントで`claude-code`が実行され、ツールにアクセス可能
+- すべてのエージェントで`claude`が実行され、ツールにアクセス可能
 
 ### 4. エージェントの停止
 
@@ -143,11 +143,11 @@ version: 1.0
 agents:
   master:
     enabled: true
-    command: "claude-code"
+    command: "claude"
     args: []
   workers:
     count: 3  # Worker数を変更
-    command: "claude-code"
+    command: "claude"
     args: []
 
 monitoring:
@@ -292,9 +292,9 @@ tmuxがインストールされているか確認:
 tmux -V
 ```
 
-claude-codeが利用可能か確認:
+claudeが利用可能か確認:
 ```bash
-which claude-code
+which claude
 ```
 
 ### エージェントが通信しない

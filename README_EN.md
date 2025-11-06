@@ -38,7 +38,7 @@ Hephaestus-CLI is a Linux-based command-line tool that leverages tmux to orchest
 
 - Python 3.10 or higher
 - tmux (installed on your system)
-- claude-code CLI installed and configured
+- claude CLI installed and configured
 - Linux operating system
 
 ## Installation
@@ -117,7 +117,7 @@ Once attached:
 - Navigate between panes using tmux keybindings (default: `Ctrl+b` then arrow keys)
 - The Master pane is where you input high-level tasks
 - Workers automatically receive and execute subtasks from the Master
-- All agents run `claude-code` and can access tools
+- All agents run `claude` and can access tools
 
 ### 4. Stop Agents
 
@@ -141,11 +141,11 @@ version: 1.0
 agents:
   master:
     enabled: true
-    command: "claude-code"
+    command: "claude"
     args: []
   workers:
     count: 3  # Change number of workers
-    command: "claude-code"
+    command: "claude"
     args: []
 
 monitoring:
@@ -290,9 +290,9 @@ Check if tmux is installed:
 tmux -V
 ```
 
-Check if claude-code is available:
+Check if claude is available:
 ```bash
-which claude-code
+which claude
 ```
 
 ### Agents not communicating

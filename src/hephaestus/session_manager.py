@@ -53,7 +53,7 @@ class SessionManager:
         - 1 Master agent
         - N Worker agents (based on config)
 
-        Each pane runs a claude-code instance.
+        Each pane runs a claude instance.
         """
         if self.session_exists():
             logger.warning(f"Session {self.session_name} already exists")
@@ -104,7 +104,7 @@ class SessionManager:
             raise
 
     def _start_agent_in_pane(self, pane: libtmux.Pane, agent_type: str, agent_id: int) -> None:
-        """Start an agent (claude-code) in a tmux pane.
+        """Start an agent (claude) in a tmux pane.
 
         Args:
             pane: Tmux pane object
@@ -138,7 +138,7 @@ class SessionManager:
         pane.send_keys(f"echo '═══════════════════════════════════════'")
         pane.send_keys("")
 
-        # Start claude-code
+        # Start claude
         command = self.config.master.command if agent_type == "master" else self.config.workers.command
         args = self.config.master.args if agent_type == "master" else self.config.workers.args
 

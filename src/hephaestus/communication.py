@@ -37,7 +37,8 @@ class Message:
 
     def _calculate_checksum(self) -> str:
         """Calculate MD5 checksum of message content."""
-        content_str = f"{self.id}{self.type}{self.sender}{self.recipient}{self.content}"
+        # Strip content to ensure consistent checksum calculation
+        content_str = f"{self.id}{self.type}{self.sender}{self.recipient}{self.content.strip()}"
         return hashlib.md5(content_str.encode()).hexdigest()
 
     def verify_checksum(self) -> bool:
@@ -98,8 +99,9 @@ class Message:
             # Extract metadata
             metadata_section = parts[1].strip()
             if metadata_section.startswith("metadata:"):
-                metadata_yaml = metadata_section[len("metadata:"):].strip()
-                metadata = yaml.safe_load(metadata_yaml)
+                # Parse the entire metadata section as YAML
+                parsed = yaml.safe_load(metadata_section)
+                metadata = parsed.get("metadata", {})
             else:
                 raise ValueError("Invalid message format: metadata not found")
 

@@ -125,7 +125,7 @@ def attach_command(create: bool):
     """Attach to the tmux session with all agents.
 
     Opens a tmux session showing Master and Worker agents in split panes.
-    Each pane runs a claude-code instance.
+    Each pane runs a claude instance.
     """
     init_logger()
 

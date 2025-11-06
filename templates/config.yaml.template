@@ -6,11 +6,11 @@ version: 1.0
 agents:
   master:
     enabled: true
-    command: "claude-code"
+    command: "claude"
     args: []
   workers:
     count: 3  # Worker count (adjustable)
-    command: "claude-code"
+    command: "claude"
     args: []
 
 monitoring:
