@@ -18,7 +18,7 @@ A tmux-based multi-agent CLI tool for managing multiple LLM agents (Master + Wor
 
 - Python 3.10 or higher
 - tmux
-- claude CLI installed and configured
+- claude code
 - Linux operating system
 
 ## Installation
