@@ -16,7 +16,7 @@
 
 - Python 3.10以上
 - tmux
-- claude CLI
+- claude code
 - Linuxオペレーティングシステム
 
 ## インストール
