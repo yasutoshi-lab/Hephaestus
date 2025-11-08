@@ -432,6 +432,135 @@ def dashboard_command():
         sys.exit(1)
 
 
+@main.command(name="send")
+@click.argument("agent", required=False)
+@click.argument("message", required=False)
+@click.option(
+    "--list",
+    "-l",
+    is_flag=True,
+    help="List all available agents in the session",
+)
+def send_command(agent: str, message: str, list: bool):
+    """Send a message to a specific agent (like agent-send.sh).
+
+    Examples:
+        hephaestus send --list                    # List available agents
+        hephaestus send worker-1 "タスクを実行"    # Send message to worker-1
+        hephaestus send master "完了しました"      # Send message to master
+    """
+    init_logger()
+
+    work_dir = get_work_directory()
+
+    # Check if initialized
+    if not work_dir.exists():
+        console.print("[yellow]Not initialized. Run 'hephaestus init' first.[/yellow]")
+        sys.exit(1)
+
+    try:
+        # Load configuration
+        config_path = work_dir / "config.yaml"
+        config_manager = ConfigManager(config_path)
+        config = config_manager.load()
+
+        # Create session manager to check if session exists
+        session_manager = SessionManager(config, work_dir)
+
+        if not session_manager.session_exists():
+            console.print(
+                Panel(
+                    f"[red]No active session found: {config.tmux.session_name}[/red]\n\n"
+                    "Start the session first with: [bold]hephaestus attach --create[/bold]",
+                    title="Session Not Running",
+                    border_style="red",
+                )
+            )
+            sys.exit(1)
+
+        # Create communicator
+        communicator = AgentCommunicator(config.tmux.session_name, work_dir)
+
+        if list:
+            # List all available agents
+            console.print(
+                Panel(
+                    "[cyan]Available Agents[/cyan]\n\n"
+                    "The following agents are configured in your session:",
+                    title="Agent List",
+                    border_style="cyan",
+                )
+            )
+
+            # Create table for agents
+            table = Table(show_header=True, header_style="bold cyan")
+            table.add_column("Agent Name", style="cyan")
+            table.add_column("Status", style="green")
+            table.add_column("Pane", style="yellow")
+
+            # Check master
+            master_target = communicator.get_pane_target("master")
+            master_active = communicator.check_pane_active("master")
+            table.add_row(
+                "master",
+                "[green]Active[/green]" if master_active else "[red]Inactive[/red]",
+                master_target if master_target else "[red]Not found[/red]"
+            )
+
+            # Check workers
+            for i in range(1, config.workers.count + 1):
+                worker_name = f"worker-{i}"
+                worker_target = communicator.get_pane_target(worker_name)
+                worker_active = communicator.check_pane_active(worker_name)
+                table.add_row(
+                    worker_name,
+                    "[green]Active[/green]" if worker_active else "[red]Inactive[/red]",
+                    worker_target if worker_target else "[red]Not found[/red]"
+                )
+
+            console.print(table)
+            console.print("\n[cyan]Usage:[/cyan] hephaestus send <agent-name> <message>")
+
+        elif agent and message:
+            # Send message to specific agent
+            console.print(f"[cyan]Sending message to {agent}...[/cyan]")
+
+            success = communicator.send_message(agent, message)
+
+            if success:
+                console.print(f"[green]✓[/green] Message sent to {agent}")
+                console.print(f"[dim]Message: {message}[/dim]")
+
+                # Show log file location
+                console.print(f"\n[cyan]Communication logged to:[/cyan] {communicator.log_file}")
+            else:
+                console.print(f"[red]✗[/red] Failed to send message to {agent}")
+                console.print("[yellow]Check if the agent exists with:[/yellow] hephaestus send --list")
+                sys.exit(1)
+
+        else:
+            # Show usage help
+            console.print(
+                Panel(
+                    "[yellow]Missing arguments[/yellow]\n\n"
+                    "Usage:\n"
+                    "  [bold]hephaestus send --list[/bold]                    # List agents\n"
+                    "  [bold]hephaestus send <agent> <message>[/bold]         # Send message\n\n"
+                    "Examples:\n"
+                    "  [bold]hephaestus send worker-1 \"タスクを実行\"[/bold]\n"
+                    "  [bold]hephaestus send master \"完了しました\"[/bold]",
+                    title="Send Command Help",
+                    border_style="yellow",
+                )
+            )
+            sys.exit(1)
+
+    except Exception as e:
+        console.print(f"[red]✗ Send command failed:[/red] {e}")
+        logger.error(f"Send command failed: {e}", exc_info=True)
+        sys.exit(1)
+
+
 @main.command(name="logs")
 @click.option(
     "--agent",
