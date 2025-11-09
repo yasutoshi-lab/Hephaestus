@@ -1,4 +1,4 @@
-"""Log streaming and viewing utilities for Hephaestus-CLI.
+"""Log streaming and viewing utilities for Hephaestus.
 
 This module provides functionality to stream and view agent logs in real-time.
 """

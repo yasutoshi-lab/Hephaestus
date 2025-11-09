@@ -1,4 +1,4 @@
-"""Communication layer for Hephaestus-CLI.
+"""Communication layer for Hephaestus.
 
 This module implements Markdown-based message passing between
 Master and Worker agents using the file system.

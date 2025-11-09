@@ -1,11 +1,11 @@
-"""Hephaestus-CLI: A tmux-based multi-agent CLI tool.
+"""Hephaestus: A tmux-based multi-agent CLI tool.
 
-Hephaestus-CLI manages multiple LLM agents (Master + Workers) to execute
+Hephaestus manages multiple LLM agents (Master + Workers) to execute
 complex tasks collaboratively using tmux for process management.
 """
 
 __version__ = "0.1.0"
-__author__ = "Hephaestus-CLI Development Team"
+__author__ = "Hephaestus Developer"
 __license__ = "MIT"
 
 from .config import Config, ConfigManager

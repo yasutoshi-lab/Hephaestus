@@ -1,4 +1,4 @@
-"""Tmux session management for Hephaestus-CLI.
+"""Tmux session management for Hephaestus.
 
 This module handles creation, management, and destruction of tmux sessions
 for running Master and Worker agents.

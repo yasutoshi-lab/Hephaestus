@@ -1,4 +1,4 @@
-"""Health monitoring for Hephaestus-CLI.
+"""Health monitoring for Hephaestus.
 
 This module provides agent health monitoring, error detection,
 and automatic recovery capabilities.

@@ -1,4 +1,4 @@
-"""Main entry point for Hephaestus-CLI when run as a module.
+"""Main entry point for Hephaestus when run as a module.
 
 This allows running the CLI using:
     python -m hephaestus

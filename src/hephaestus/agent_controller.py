@@ -1,4 +1,4 @@
-"""Agent lifecycle management for Hephaestus-CLI.
+"""Agent lifecycle management for Hephaestus.
 
 This module handles the lifecycle of Master and Worker agents,
 including spawning, monitoring, and terminating processes.

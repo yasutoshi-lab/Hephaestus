@@ -1,4 +1,4 @@
-"""Task management for Hephaestus-CLI.
+"""Task management for Hephaestus.
 
 This module handles task queue management, task assignment,
 and progress tracking for Master and Worker agents.

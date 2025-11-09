@@ -1,4 +1,4 @@
-"""Configuration management for Hephaestus-CLI.
+"""Configuration management for Hephaestus.
 
 This module handles loading, validating, and accessing configuration
 from the config.yaml file in the .hephaestus-work directory.
@@ -66,7 +66,7 @@ class TmuxConfig:
 
 @dataclass
 class Config:
-    """Main configuration class for Hephaestus-CLI."""
+    """Main configuration class for Hephaestus."""
 
     version: str = "1.0"
     master: AgentConfig = field(default_factory=AgentConfig)
