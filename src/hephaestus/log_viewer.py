@@ -23,7 +23,7 @@ class LogStreamer:
         """Initialize LogStreamer.
 
         Args:
-            work_dir: Path to hephaestus-work directory
+            work_dir: Path to .hephaestus-work directory
         """
         self.work_dir = work_dir
         self.log_dir = work_dir / "logs"

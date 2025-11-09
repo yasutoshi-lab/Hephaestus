@@ -22,7 +22,7 @@ class AgentCommunicator:
 
         Args:
             session_name: Name of the tmux session
-            work_dir: Path to hephaestus-work directory
+            work_dir: Path to .hephaestus-work directory
         """
         self.session_name = session_name
         self.work_dir = work_dir

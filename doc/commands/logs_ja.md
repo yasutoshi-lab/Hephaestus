@@ -210,10 +210,10 @@ hephaestus logs -a communication -f
 
 ## ログファイルの場所
 
-ログファイルは`hephaestus-work/logs/`ディレクトリに保存されます：
+ログファイルは`.hephaestus-work/logs/`ディレクトリに保存されます：
 
 ```
-hephaestus-work/logs/
+.hephaestus-work/logs/
 ├── master.log           # Masterエージェントのログ
 ├── worker_1.log         # Worker-1のログ
 ├── worker_2.log         # Worker-2のログ

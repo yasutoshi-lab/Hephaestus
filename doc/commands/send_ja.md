@@ -58,7 +58,7 @@ Sending message to worker-1...
 ✓ Message sent to worker-1
 Message: src/ディレクトリのコード解析を開始してください
 
-Communication logged to: hephaestus-work/logs/communication.log
+Communication logged to: .hephaestus-work/logs/communication.log
 ```
 
 ### Masterに進捗を報告（Worker内から）
@@ -121,10 +121,10 @@ hephaestus send master "Task task_001 BLOCKED: Missing dependency. Need assistan
 
 ```bash
 # ログを確認
-cat hephaestus-work/logs/communication.log
+cat .hephaestus-work/logs/communication.log
 
 # 特定のエージェント間の通信を検索
-grep "master -> worker-1" hephaestus-work/logs/communication.log
+grep "master -> worker-1" .hephaestus-work/logs/communication.log
 ```
 
 **ログ形式**:
@@ -202,7 +202,7 @@ done
 hephaestus send worker-1 "Test message - Please acknowledge"
 
 # ログで受信確認
-tail -f hephaestus-work/logs/communication.log
+tail -f .hephaestus-work/logs/communication.log
 ```
 
 ## 技術的な詳細

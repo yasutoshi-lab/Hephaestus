@@ -58,7 +58,7 @@ Sending message to worker-1...
 ✓ Message sent to worker-1
 Message: Start analyzing the code in src/ directory
 
-Communication logged to: hephaestus-work/logs/communication.log
+Communication logged to: .hephaestus-work/logs/communication.log
 ```
 
 ### Report Progress to Master (from Worker)
@@ -121,10 +121,10 @@ All communications are automatically logged:
 
 ```bash
 # View logs
-cat hephaestus-work/logs/communication.log
+cat .hephaestus-work/logs/communication.log
 
 # Search for specific agent communication
-grep "master -> worker-1" hephaestus-work/logs/communication.log
+grep "master -> worker-1" .hephaestus-work/logs/communication.log
 ```
 
 **Log Format**:
@@ -202,7 +202,7 @@ done
 hephaestus send worker-1 "Test message - Please acknowledge"
 
 # Monitor logs for acknowledgment
-tail -f hephaestus-work/logs/communication.log
+tail -f .hephaestus-work/logs/communication.log
 ```
 
 ## Technical Details

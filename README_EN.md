@@ -81,7 +81,7 @@ hephaestus kill
 
 ## Configuration
 
-Edit `hephaestus-work/config.yaml` to customize:
+Edit `.hephaestus-work/config.yaml` to customize:
 
 ```yaml
 version: 1.0
@@ -149,7 +149,7 @@ hephaestus send worker-1 "Start analyzing the src/ directory"
 hephaestus send master "Task completed. Please review the results"
 
 # Check communication logs
-cat hephaestus-work/logs/communication.log
+cat .hephaestus-work/logs/communication.log
 ```
 
 **Note**: Agent personas enforce the use of `hephaestus send`:
@@ -167,7 +167,7 @@ which claude    # Check if claude is available
 **Agents not communicating**
 ```bash
 hephaestus logs -a master -f    # Check logs
-ls -la hephaestus-work/communication/    # Verify permissions
+ls -la .hephaestus-work/communication/    # Verify permissions
 ```
 
 **High resource usage**

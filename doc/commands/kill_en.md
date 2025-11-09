@@ -48,7 +48,7 @@ Terminates session immediately without confirmation.
 
 ## Session State Saving
 
-Before termination, the following information is saved to `hephaestus-work/cache/last_session_state.json`:
+Before termination, the following information is saved to `.hephaestus-work/cache/last_session_state.json`:
 
 ```json
 {
@@ -71,7 +71,7 @@ In this case, the session has already terminated.
 ### Not Initialized
 
 ```
-No hephaestus-work directory found. Nothing to kill.
+No .hephaestus-work directory found. Nothing to kill.
 ```
 
 Environment is not initialized or already in clean state.

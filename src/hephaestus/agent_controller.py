@@ -39,7 +39,7 @@ class AgentController:
 
         Args:
             config: Configuration object
-            work_dir: Path to hephaestus-work directory
+            work_dir: Path to .hephaestus-work directory
         """
         self.config = config
         self.work_dir = work_dir

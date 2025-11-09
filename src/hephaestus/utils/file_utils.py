@@ -13,17 +13,17 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Work directory name
-WORK_DIR_NAME = "hephaestus-work"
+WORK_DIR_NAME = ".hephaestus-work"
 
 
 def get_work_directory(base_path: Optional[Path] = None) -> Path:
-    """Get the hephaestus-work directory path.
+    """Get the .hephaestus-work directory path.
 
     Args:
         base_path: Base directory path. Defaults to current working directory.
 
     Returns:
-        Path to hephaestus-work directory
+        Path to .hephaestus-work directory
     """
     if base_path is None:
         base_path = Path.cwd()
@@ -44,13 +44,13 @@ def ensure_directory(path: Path, mode: int = 0o700) -> None:
 
 
 def create_directory_structure(base_path: Optional[Path] = None) -> Path:
-    """Create the complete hephaestus-work directory structure.
+    """Create the complete .hephaestus-work directory structure.
 
     Args:
         base_path: Base directory path. Defaults to current working directory.
 
     Returns:
-        Path to the created hephaestus-work directory
+        Path to the created .hephaestus-work directory
 
     Raises:
         OSError: If directory creation fails
@@ -76,7 +76,7 @@ def create_directory_structure(base_path: Optional[Path] = None) -> Path:
     for directory in directories:
         ensure_directory(directory)
 
-    logger.info(f"Created hephaestus-work directory structure at {work_dir}")
+    logger.info(f"Created .hephaestus-work directory structure at {work_dir}")
     return work_dir
 
 
@@ -173,7 +173,7 @@ def create_agent_config_files(work_dir: Path) -> None:
     Creates hierarchical CLAUDE.md files to configure agent personas and behaviors.
 
     Args:
-        work_dir: Path to hephaestus-work directory
+        work_dir: Path to .hephaestus-work directory
     """
     claude_dir = work_dir / ".claude"
     master_dir = claude_dir / "master"
@@ -192,7 +192,7 @@ This is a Hephaestus multi-agent workspace. You are part of a collaborative syst
 ## Project Structure
 
 ```
-hephaestus-work/
+.hephaestus-work/
 ├── .claude/              # Agent configuration files
 │   ├── master/          # Master agent specific configs
 │   └── worker/          # Worker agent specific configs
@@ -337,7 +337,7 @@ When delegating to workers, use this format in the task file:
 
 ## Working with Workers
 
-- Workers are at: `hephaestus-work/` (worker-1, worker-2, worker-3, etc.)
+- Workers are at: `.hephaestus-work/` (worker-1, worker-2, worker-3, etc.)
 - Each worker has access to the same file system
 - Workers read from `communication/master_to_worker/`
 - Workers write to `communication/worker_to_master/`

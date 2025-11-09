@@ -15,7 +15,7 @@ hephaestus init [OPTIONS]
 | オプション | 短縮形 | デフォルト | 説明 |
 |-----------|--------|-----------|------|
 | `--workers` | `-w` | 3 | Workerエージェントの数を指定 |
-| `--force` | `-f` | - | 既存のhephaestus-workディレクトリがある場合でも強制的に再初期化 |
+| `--force` | `-f` | - | 既存の.hephaestus-workディレクトリがある場合でも強制的に再初期化 |
 | `--help` | - | - | ヘルプメッセージを表示 |
 
 ## 動作
@@ -24,7 +24,7 @@ hephaestus init [OPTIONS]
 
 1. **ディレクトリ構造の作成**
    ```
-   hephaestus-work/
+   .hephaestus-work/
    ├── .claude/              # エージェント設定
    │   ├── CLAUDE.md         # 共通設定
    │   ├── master/           # Master設定
@@ -80,15 +80,15 @@ hephaestus init --workers 5
 hephaestus init --force
 ```
 
-既存の`hephaestus-work`ディレクトリがある場合でも、警告なしで上書きします。
+既存の`.hephaestus-work`ディレクトリがある場合でも、警告なしで上書きします。
 
 ## エラーと対処
 
-### 既にhephaestus-workディレクトリが存在する場合
+### 既に.hephaestus-workディレクトリが存在する場合
 
 ```
-hephaestus-work directory already exists at:
-/path/to/hephaestus-work
+.hephaestus-work directory already exists at:
+/path/to/.hephaestus-work
 
 Use --force to reinitialize.
 ```
@@ -98,7 +98,7 @@ Use --force to reinitialize.
 ### ディレクトリ作成の権限がない場合
 
 ```
-Permission denied: 'hephaestus-work'
+Permission denied: '.hephaestus-work'
 ```
 
 **対処**: 現在のディレクトリに書き込み権限があることを確認してください。

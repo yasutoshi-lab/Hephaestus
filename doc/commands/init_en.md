@@ -15,7 +15,7 @@ hephaestus init [OPTIONS]
 | Option | Short | Default | Description |
 |--------|-------|---------|-------------|
 | `--workers` | `-w` | 3 | Specify the number of worker agents |
-| `--force` | `-f` | - | Force reinitialization even if hephaestus-work exists |
+| `--force` | `-f` | - | Force reinitialization even if .hephaestus-work exists |
 | `--help` | - | - | Show help message |
 
 ## Behavior
@@ -24,7 +24,7 @@ When you run this command, the following operations are performed:
 
 1. **Directory Structure Creation**
    ```
-   hephaestus-work/
+   .hephaestus-work/
    ├── .claude/              # Agent configuration
    │   ├── CLAUDE.md         # Common configuration
    │   ├── master/           # Master configuration
@@ -80,15 +80,15 @@ Creates an environment with 5 worker agents.
 hephaestus init --force
 ```
 
-Overwrites existing `hephaestus-work` directory without warning.
+Overwrites existing `.hephaestus-work` directory without warning.
 
 ## Errors and Solutions
 
-### When hephaestus-work Directory Already Exists
+### When .hephaestus-work Directory Already Exists
 
 ```
-hephaestus-work directory already exists at:
-/path/to/hephaestus-work
+.hephaestus-work directory already exists at:
+/path/to/.hephaestus-work
 
 Use --force to reinitialize.
 ```
@@ -98,7 +98,7 @@ Use --force to reinitialize.
 ### Permission Denied
 
 ```
-Permission denied: 'hephaestus-work'
+Permission denied: '.hephaestus-work'
 ```
 
 **Solution**: Ensure you have write permissions in the current directory.

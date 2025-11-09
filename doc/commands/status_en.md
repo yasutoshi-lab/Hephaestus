@@ -14,7 +14,7 @@ hephaestus status
 
 The following information is displayed:
 
-- **Work Directory**: Path to hephaestus-work directory
+- **Work Directory**: Path to .hephaestus-work directory
 - **Tmux Session**: Tmux session name
 - **Session Active**: Whether the session is running
 - **Worker Count**: Number of worker agents
@@ -26,7 +26,7 @@ The following information is displayed:
 ┏━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ Component      ┃ Status                           ┃
 ┡━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-│ Work Directory │ /path/to/hephaestus-work         │
+│ Work Directory │ /path/to/.hephaestus-work         │
 │ Tmux Session   │ hephaestus                       │
 │ Session Active │ Yes                              │
 │ Worker Count   │ 3                                │

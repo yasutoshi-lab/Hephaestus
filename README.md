@@ -79,7 +79,7 @@ hephaestus kill
 
 ## 設定
 
-`hephaestus-work/config.yaml`を編集してカスタマイズ：
+`.hephaestus-work/config.yaml`を編集してカスタマイズ：
 
 ```yaml
 version: 1.0
@@ -147,7 +147,7 @@ hephaestus send worker-1 "src/ディレクトリの解析を開始してくだ�
 hephaestus send master "タスク完了しました。結果を確認してください"
 
 # 通信ログを確認
-cat hephaestus-work/logs/communication.log
+cat .hephaestus-work/logs/communication.log
 ```
 
 **注意**: エージェントのペルソナは `hephaestus send` の使用を強制します：
@@ -165,7 +165,7 @@ which claude    # claudeが利用可能か確認
 **エージェントが通信しない**
 ```bash
 hephaestus logs -a master -f    # ログをチェック
-ls -la hephaestus-work/communication/    # 権限を確認
+ls -la .hephaestus-work/communication/    # 権限を確認
 ```
 
 **リソース使用量が高い**

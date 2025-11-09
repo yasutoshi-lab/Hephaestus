@@ -91,7 +91,7 @@ class HealthMonitor:
         Args:
             config: Configuration object
             agent_controller: Agent controller instance
-            work_dir: Path to hephaestus-work directory
+            work_dir: Path to .hephaestus-work directory
         """
         self.config = config
         self.agent_controller = agent_controller

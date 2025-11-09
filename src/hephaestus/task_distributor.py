@@ -38,7 +38,7 @@ class TaskDistributor:
 
         Args:
             config: Configuration object
-            work_dir: Path to hephaestus-work directory
+            work_dir: Path to .hephaestus-work directory
             communicator: AgentCommunicator instance
         """
         self.config = config

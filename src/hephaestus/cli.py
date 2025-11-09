@@ -55,10 +55,10 @@ def main(ctx):
     "--force",
     "-f",
     is_flag=True,
-    help="Force initialization even if hephaestus-work exists",
+    help="Force initialization even if .hephaestus-work exists",
 )
 def init_command(workers: int, force: bool):
-    """Initialize hephaestus-work directory in current location.
+    """Initialize .hephaestus-work directory in current location.
 
     Creates the necessary directory structure, configuration file,
     and prepares the environment for agent execution.
@@ -71,7 +71,7 @@ def init_command(workers: int, force: bool):
     if work_dir.exists() and not force:
         console.print(
             Panel(
-                f"[yellow]hephaestus-work directory already exists at:[/yellow]\n{work_dir}\n\n"
+                f"[yellow].hephaestus-work directory already exists at:[/yellow]\n{work_dir}\n\n"
                 "Use --force to reinitialize.",
                 title="Already Initialized",
                 border_style="yellow",
@@ -81,7 +81,7 @@ def init_command(workers: int, force: bool):
 
     try:
         # Create directory structure
-        console.print("[cyan]Creating hephaestus-work directory structure...[/cyan]")
+        console.print("[cyan]Creating .hephaestus-work directory structure...[/cyan]")
         create_directory_structure()
 
         # Create default config
@@ -113,7 +113,7 @@ def init_command(workers: int, force: bool):
         console.print(table)
         console.print("\n[green]✓[/green] Initialization successful!")
         console.print("\n[cyan]Next steps:[/cyan]")
-        console.print("  1. Review configuration: [bold]hephaestus-work/config.yaml[/bold]")
+        console.print("  1. Review configuration: [bold].hephaestus-work/config.yaml[/bold]")
         console.print("  2. Start agents: [bold]hephaestus attach[/bold]")
 
     except Exception as e:
@@ -143,7 +143,7 @@ def attach_command(create: bool):
     if not work_dir.exists():
         console.print(
             Panel(
-                "[red]hephaestus-work directory not found![/red]\n\n"
+                "[red].hephaestus-work directory not found![/red]\n\n"
                 "Run [bold]hephaestus init[/bold] first to initialize the environment.",
                 title="Not Initialized",
                 border_style="red",
@@ -205,7 +205,7 @@ def kill_command(force: bool):
 
     # Check if initialized
     if not work_dir.exists():
-        console.print("[yellow]No hephaestus-work directory found. Nothing to kill.[/yellow]")
+        console.print("[yellow]No .hephaestus-work directory found. Nothing to kill.[/yellow]")
         sys.exit(0)
 
     try:

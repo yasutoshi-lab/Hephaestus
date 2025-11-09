@@ -1,7 +1,7 @@
 """Configuration management for Hephaestus-CLI.
 
 This module handles loading, validating, and accessing configuration
-from the config.yaml file in the hephaestus-work directory.
+from the config.yaml file in the .hephaestus-work directory.
 """
 
 import yaml

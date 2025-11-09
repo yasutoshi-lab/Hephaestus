@@ -48,7 +48,7 @@ hephaestus kill --force
 
 ## セッション状態の保存
 
-終了前に、以下の情報が `hephaestus-work/cache/last_session_state.json` に保存されます：
+終了前に、以下の情報が `.hephaestus-work/cache/last_session_state.json` に保存されます：
 
 ```json
 {
@@ -71,7 +71,7 @@ No active session found: hephaestus
 ### 初期化されていない
 
 ```
-No hephaestus-work directory found. Nothing to kill.
+No .hephaestus-work directory found. Nothing to kill.
 ```
 
 環境が初期化されていない、またはすでにクリーンな状態です。

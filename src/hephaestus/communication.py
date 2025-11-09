@@ -144,7 +144,7 @@ class CommunicationManager:
         """Initialize CommunicationManager.
 
         Args:
-            work_dir: Path to hephaestus-work directory
+            work_dir: Path to .hephaestus-work directory
         """
         self.work_dir = work_dir
         self.comm_dir = work_dir / "communication"

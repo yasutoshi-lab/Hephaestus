@@ -311,7 +311,7 @@ def run_dashboard(config: Config, work_dir: Path):
 
     Args:
         config: Configuration object
-        work_dir: Path to hephaestus-work directory
+        work_dir: Path to .hephaestus-work directory
     """
     app = HephaestusDashboard(config, work_dir)
     app.run()

@@ -14,7 +14,7 @@ hephaestus status
 
 以下の情報が表示されます：
 
-- **Work Directory**: hephaestus-workディレクトリのパス
+- **Work Directory**: .hephaestus-workディレクトリのパス
 - **Tmux Session**: tmuxセッション名
 - **Session Active**: セッションが起動しているかどうか
 - **Worker Count**: Workerエージェントの数
@@ -26,7 +26,7 @@ hephaestus status
 ┏━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ Component      ┃ Status                           ┃
 ┡━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-│ Work Directory │ /path/to/hephaestus-work         │
+│ Work Directory │ /path/to/.hephaestus-work         │
 │ Tmux Session   │ hephaestus                       │
 │ Session Active │ Yes                              │
 │ Worker Count   │ 3                                │

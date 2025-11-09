@@ -210,10 +210,10 @@ hephaestus logs -a communication -f
 
 ## Log File Location
 
-Log files are stored in `hephaestus-work/logs/` directory:
+Log files are stored in `.hephaestus-work/logs/` directory:
 
 ```
-hephaestus-work/logs/
+.hephaestus-work/logs/
 ├── master.log           # Master agent log
 ├── worker_1.log         # Worker-1 log
 ├── worker_2.log         # Worker-2 log

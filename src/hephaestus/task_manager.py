@@ -80,7 +80,7 @@ class TaskManager:
         """Initialize TaskManager.
 
         Args:
-            work_dir: Path to hephaestus-work directory
+            work_dir: Path to .hephaestus-work directory
         """
         self.work_dir = work_dir
         self.tasks_dir = work_dir / "tasks"

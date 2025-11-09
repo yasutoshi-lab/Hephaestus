@@ -86,7 +86,7 @@ Use --create flag to create a new session:
 ### 初期化されていない
 
 ```
-hephaestus-work directory not found!
+.hephaestus-work directory not found!
 
 Run hephaestus init first to initialize the environment.
 ```
