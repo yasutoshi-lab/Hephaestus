@@ -14,6 +14,14 @@
 - **自動タスク分配**: Markdownベースのファイル通信でタスクを自動配布
 - **強制通信プロトコル**: `hephaestus send` を使用した確実なエージェント間通信
 
+## UI
+
+**イメージサンプル**
+<img src"./media/ui-sample.png", width=600>
+
+**動作サンプル**
+<img src"./media/working-sample.gif", width=600>
+
 ## 前提条件
 
 - Python 3.10以上
