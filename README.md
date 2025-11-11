@@ -28,8 +28,8 @@
 - tmux
 - 以下のいずれかのAIエージェント:
   - [Claude Code](https://github.com/anthropics/claude-code)
-  - [Gemini CLI](https://github.com/google/gemini-cli) (--yoloオプション対応)
-  - ChatGPT Codex (--full-autoオプション対応)
+  - [Gemini CLI](https://github.com/google/gemini-cli)
+  - ChatGPT Codex
 - Linuxオペレーティングシステム
 
 ## ユースケース
