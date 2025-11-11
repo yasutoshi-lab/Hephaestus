@@ -211,10 +211,6 @@ ls -la .hephaestus-work/communication/    # 権限を確認
 hephaestus init --workers 2 --force
 ```
 
-## 参考資料
-
-- [Claude Code](https://github.com/anthropics/claude-code)
-
 ## ライセンス
 
 MITライセンス
