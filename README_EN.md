@@ -213,10 +213,6 @@ ls -la .hephaestus-work/communication/    # Verify permissions
 hephaestus init --workers 2 --force
 ```
 
-## References
-
-- [Claude Code](https://github.com/anthropics/claude-code)
-
 ## License
 
 MIT License
