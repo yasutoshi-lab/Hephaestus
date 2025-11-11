@@ -86,11 +86,11 @@ def test_create_agent_config_files_generates_claude_md(tmp_path: Path) -> None:
     work_dir.mkdir()
     file_utils.create_agent_config_files(work_dir, agent_type="claude")
 
-    claude_dir = work_dir / ".claude"
-    assert (claude_dir / "CLAUDE.md").exists()
-    assert (claude_dir / "master" / "CLAUDE.md").exists()
-    assert (claude_dir / "worker" / "CLAUDE.md").exists()
-    master_content = (claude_dir / "master" / "CLAUDE.md").read_text(encoding="utf-8")
+    agent_dir = work_dir / file_utils.get_agent_directory_name("claude")
+    assert (agent_dir / "CLAUDE.md").exists()
+    assert (agent_dir / "master" / "CLAUDE.md").exists()
+    assert (agent_dir / "worker" / "CLAUDE.md").exists()
+    master_content = (agent_dir / "master" / "CLAUDE.md").read_text(encoding="utf-8")
     assert "Master Agent Configuration" in master_content
 
 
@@ -99,11 +99,11 @@ def test_create_agent_config_files_generates_gemini_md(tmp_path: Path) -> None:
     work_dir.mkdir()
     file_utils.create_agent_config_files(work_dir, agent_type="gemini")
 
-    claude_dir = work_dir / ".claude"
-    assert (claude_dir / "GEMINI.md").exists()
-    assert (claude_dir / "master" / "GEMINI.md").exists()
-    assert (claude_dir / "worker" / "GEMINI.md").exists()
-    master_content = (claude_dir / "master" / "GEMINI.md").read_text(encoding="utf-8")
+    agent_dir = work_dir / file_utils.get_agent_directory_name("gemini")
+    assert (agent_dir / "GEMINI.md").exists()
+    assert (agent_dir / "master" / "GEMINI.md").exists()
+    assert (agent_dir / "worker" / "GEMINI.md").exists()
+    master_content = (agent_dir / "master" / "GEMINI.md").read_text(encoding="utf-8")
     assert "Master Agent Configuration" in master_content
 
 
@@ -112,11 +112,11 @@ def test_create_agent_config_files_generates_codex_agent_md(tmp_path: Path) -> N
     work_dir.mkdir()
     file_utils.create_agent_config_files(work_dir, agent_type="codex")
 
-    claude_dir = work_dir / ".claude"
-    assert (claude_dir / "AGENT.md").exists()
-    assert (claude_dir / "master" / "AGENT.md").exists()
-    assert (claude_dir / "worker" / "AGENT.md").exists()
-    master_content = (claude_dir / "master" / "AGENT.md").read_text(encoding="utf-8")
+    agent_dir = work_dir / file_utils.get_agent_directory_name("codex")
+    assert (agent_dir / "AGENT.md").exists()
+    assert (agent_dir / "master" / "AGENT.md").exists()
+    assert (agent_dir / "worker" / "AGENT.md").exists()
+    master_content = (agent_dir / "master" / "AGENT.md").read_text(encoding="utf-8")
     assert "Master Agent Configuration" in master_content
 
 
@@ -125,8 +125,7 @@ def test_create_agent_config_files_default_to_claude(tmp_path: Path) -> None:
     work_dir.mkdir()
     file_utils.create_agent_config_files(work_dir)
 
-    claude_dir = work_dir / ".claude"
-    assert (claude_dir / "CLAUDE.md").exists()
-    assert (claude_dir / "master" / "CLAUDE.md").exists()
-    assert (claude_dir / "worker" / "CLAUDE.md").exists()
-
+    agent_dir = work_dir / file_utils.get_agent_directory_name("claude")
+    assert (agent_dir / "CLAUDE.md").exists()
+    assert (agent_dir / "master" / "CLAUDE.md").exists()
+    assert (agent_dir / "worker" / "CLAUDE.md").exists()

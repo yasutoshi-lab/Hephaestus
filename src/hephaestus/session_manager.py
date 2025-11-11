@@ -13,6 +13,7 @@ import libtmux
 from libtmux.pane import PaneDirection
 
 from .config import Config, AGENT_README_FILES
+from .utils.file_utils import get_agent_directory_name
 from .agent_controller import AgentController
 
 logger = logging.getLogger(__name__)
@@ -33,6 +34,8 @@ class SessionManager:
         self.session_name = config.tmux.session_name
         self.server = libtmux.Server()
         self.agent_controller = AgentController(config, work_dir)
+        self.agent_dir_name = get_agent_directory_name(config.agent_type)
+        self.agent_dir = self.work_dir / self.agent_dir_name
 
     def session_exists(self) -> bool:
         """Check if the tmux session exists.
@@ -149,9 +152,9 @@ class SessionManager:
 
         # Determine agent working directory
         if agent_type == "master":
-            agent_work_dir = self.work_dir / ".claude" / "master"
+            agent_work_dir = self.agent_dir / "master"
         else:
-            agent_work_dir = self.work_dir / ".claude" / "worker"
+            agent_work_dir = self.agent_dir / "worker"
 
         # Change to agent-specific directory
         pane.send_keys(f"cd {agent_work_dir}")
@@ -198,9 +201,9 @@ class SessionManager:
 
             # Load persona from agent-specific README file
             if agent_type == "master":
-                persona_file = self.work_dir / ".claude" / "master" / readme_filename
+                persona_file = self.agent_dir / "master" / readme_filename
             else:
-                persona_file = self.work_dir / ".claude" / "worker" / readme_filename
+                persona_file = self.agent_dir / "worker" / readme_filename
 
             if not persona_file.exists():
                 logger.warning(f"Persona file not found: {persona_file}")

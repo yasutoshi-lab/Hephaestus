@@ -15,6 +15,24 @@ logger = logging.getLogger(__name__)
 # Work directory name
 WORK_DIR_NAME = ".hephaestus-work"
 
+# Agent-specific directory names (stored inside .hephaestus-work)
+AGENT_DIR_NAMES = {
+    "claude": ".Claude",
+    "gemini": ".Gemini",
+    "codex": ".Codex",
+}
+DEFAULT_AGENT_DIR_NAME = ".Claude"
+
+
+def get_agent_directory_name(agent_type: str) -> str:
+    """Return the agent-specific directory name (e.g., .Claude)."""
+    return AGENT_DIR_NAMES.get(agent_type.lower(), DEFAULT_AGENT_DIR_NAME)
+
+
+def get_agent_directory(work_dir: Path, agent_type: str) -> Path:
+    """Return the agent-specific directory path inside the work directory."""
+    return work_dir / get_agent_directory_name(agent_type)
+
 
 def get_work_directory(base_path: Optional[Path] = None) -> Path:
     """Get the .hephaestus-work directory path.
@@ -184,12 +202,13 @@ def create_agent_config_files(work_dir: Path, agent_type: str = "claude") -> Non
     }
     readme_filename = readme_files.get(agent_type, "CLAUDE.md")
 
-    claude_dir = work_dir / ".claude"
-    master_dir = claude_dir / "master"
-    worker_dir = claude_dir / "worker"
+    agent_dir_name = get_agent_directory_name(agent_type)
+    agent_dir = work_dir / agent_dir_name
+    master_dir = agent_dir / "master"
+    worker_dir = agent_dir / "worker"
 
     # Create directories
-    ensure_directory(claude_dir)
+    ensure_directory(agent_dir)
     ensure_directory(master_dir)
     ensure_directory(worker_dir)
 
@@ -238,6 +257,8 @@ This is a Hephaestus multi-agent workspace. You are part of a collaborative syst
 4. **Error Handling**: Log errors and notify other agents
 5. **Idempotency**: Design tasks to be safely retryable
 """
+
+    common_config = common_config.replace(".claude", agent_dir_name)
 
     # Master agent configuration
     master_config = """# Master Agent Configuration
@@ -576,8 +597,8 @@ You are a focused, reliable member of the team. Execute your assigned tasks with
 """
 
     # Write configuration files
-    (claude_dir / readme_filename).write_text(common_config, encoding="utf-8")
+    (agent_dir / readme_filename).write_text(common_config, encoding="utf-8")
     (master_dir / readme_filename).write_text(master_config, encoding="utf-8")
     (worker_dir / readme_filename).write_text(worker_config, encoding="utf-8")
 
-    logger.info(f"Created {readme_filename} agent configuration files in {claude_dir}")
+    logger.info(f"Created {readme_filename} agent configuration files in {agent_dir}")

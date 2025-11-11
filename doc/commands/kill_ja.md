@@ -91,7 +91,7 @@ No .hephaestus-work directory found. Nothing to kill.
 - ✅ ログファイル（`logs/`）
 - ✅ 通信履歴（`communication/`）
 - ✅ 設定ファイル（`config.yaml`）
-- ✅ エージェント設定（`.claude/`）
+- ✅ エージェント設定（`.Claude/`, `.Gemini/`, `.Codex/` など agent_type に応じたディレクトリ）
 
 ## 再起動
 

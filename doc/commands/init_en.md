@@ -26,7 +26,7 @@ When you run this command, the following operations are performed:
 1. **Directory Structure Creation**
    ```
    .hephaestus-work/
-   ├── .claude/              # Agent configuration
+   ├── .Claude/ (.Gemini/, .Codex/)   # Agent configuration per agent_type
    │   ├── CLAUDE.md         # Common configuration (for claude)
    │   ├── GEMINI.md         # Common configuration (for gemini)
    │   ├── AGENT.md          # Common configuration (for codex)
@@ -53,9 +53,9 @@ When you run this command, the following operations are performed:
 2. **Configuration File Generation**
    - `config.yaml`: System-wide configuration (including agent_type field)
    - Agent-type-specific README files:
-     - Claude: `.claude/CLAUDE.md`, `.claude/master/CLAUDE.md`, `.claude/worker/CLAUDE.md`
-     - Gemini: `.claude/GEMINI.md`, `.claude/master/GEMINI.md`, `.claude/worker/GEMINI.md`
-     - Codex: `.claude/AGENT.md`, `.claude/master/AGENT.md`, `.claude/worker/AGENT.md`
+     - Claude: `.Claude/CLAUDE.md`, `.Claude/master/CLAUDE.md`, `.Claude/worker/CLAUDE.md`
+     - Gemini: `.Gemini/GEMINI.md`, `.Gemini/master/GEMINI.md`, `.Gemini/worker/GEMINI.md`
+     - Codex: `.Codex/AGENT.md`, `.Codex/master/AGENT.md`, `.Codex/worker/AGENT.md`
 
 3. **Initialization Confirmation**
    - Upon successful completion, information about created directories and files is displayed

@@ -26,7 +26,7 @@ hephaestus init [OPTIONS]
 1. **ディレクトリ構造の作成**
    ```
    .hephaestus-work/
-   ├── .claude/              # エージェント設定
+   ├── .Claude/（または .Gemini/、.Codex/） # エージェント設定
    │   ├── CLAUDE.md         # 共通設定（claudeの場合）
    │   ├── GEMINI.md         # 共通設定（geminiの場合）
    │   ├── AGENT.md          # 共通設定（codexの場合）
@@ -53,9 +53,9 @@ hephaestus init [OPTIONS]
 2. **設定ファイルの生成**
    - `config.yaml`: システム全体の設定（agent_typeフィールドを含む）
    - エージェントタイプに応じたREADMEファイル:
-     - Claude: `.claude/CLAUDE.md`, `.claude/master/CLAUDE.md`, `.claude/worker/CLAUDE.md`
-     - Gemini: `.claude/GEMINI.md`, `.claude/master/GEMINI.md`, `.claude/worker/GEMINI.md`
-     - Codex: `.claude/AGENT.md`, `.claude/master/AGENT.md`, `.claude/worker/AGENT.md`
+     - Claude: `.Claude/CLAUDE.md`, `.Claude/master/CLAUDE.md`, `.Claude/worker/CLAUDE.md`
+     - Gemini: `.Gemini/GEMINI.md`, `.Gemini/master/GEMINI.md`, `.Gemini/worker/GEMINI.md`
+     - Codex: `.Codex/AGENT.md`, `.Codex/master/AGENT.md`, `.Codex/worker/AGENT.md`
 
 3. **初期化の確認**
    - 正常に完了すると、作成されたディレクトリとファイルの情報が表示されます

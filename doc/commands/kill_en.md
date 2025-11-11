@@ -91,7 +91,7 @@ The following data is retained after termination:
 - ✅ Log files (`logs/`)
 - ✅ Communication history (`communication/`)
 - ✅ Configuration file (`config.yaml`)
-- ✅ Agent configuration (`.claude/`)
+- ✅ Agent configuration (`.Claude/`, `.Gemini/`, or `.Codex/` depending on agent type)
 
 ## Restart
 

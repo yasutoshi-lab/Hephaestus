@@ -5,7 +5,11 @@ from pathlib import Path
 from hephaestus.communication import CommunicationManager, create_task_message, Message
 from hephaestus.config import ConfigManager, create_default_config
 from hephaestus.task_manager import TaskManager, TaskStatus
-from hephaestus.utils.file_utils import create_agent_config_files, create_directory_structure
+from hephaestus.utils.file_utils import (
+    create_agent_config_files,
+    create_directory_structure,
+    get_agent_directory_name,
+)
 
 
 def test_end_to_end_task_assignment_and_completion(tmp_path: Path) -> None:
@@ -76,10 +80,10 @@ def test_end_to_end_with_gemini_agent(tmp_path: Path) -> None:
     assert config.workers.command == "gemini --yolo"
 
     # Verify GEMINI.md files exist
-    claude_dir = work_dir / ".claude"
-    assert (claude_dir / "GEMINI.md").exists()
-    assert (claude_dir / "master" / "GEMINI.md").exists()
-    assert (claude_dir / "worker" / "GEMINI.md").exists()
+    agent_dir = work_dir / get_agent_directory_name("gemini")
+    assert (agent_dir / "GEMINI.md").exists()
+    assert (agent_dir / "master" / "GEMINI.md").exists()
+    assert (agent_dir / "worker" / "GEMINI.md").exists()
 
 
 def test_end_to_end_with_codex_agent(tmp_path: Path) -> None:
@@ -96,8 +100,7 @@ def test_end_to_end_with_codex_agent(tmp_path: Path) -> None:
     assert config.workers.command == "codex --full-auto"
 
     # Verify AGENT.md files exist
-    claude_dir = work_dir / ".claude"
-    assert (claude_dir / "AGENT.md").exists()
-    assert (claude_dir / "master" / "AGENT.md").exists()
-    assert (claude_dir / "worker" / "AGENT.md").exists()
-
+    agent_dir = work_dir / get_agent_directory_name("codex")
+    assert (agent_dir / "AGENT.md").exists()
+    assert (agent_dir / "master" / "AGENT.md").exists()
+    assert (agent_dir / "worker" / "AGENT.md").exists()
