@@ -29,7 +29,7 @@
 - 以下のいずれかのAIエージェント:
   - [Claude Code](https://github.com/anthropics/claude-code)
   - [Gemini CLI](https://github.com/google/gemini-cli)
-  - [ChatGPT Codex](https://openai.com/ja-JP/codex/)
+  - [ChatGPT Codex](https://chatgpt.com/codex)
 - Linuxオペレーティングシステム
 
 ## ユースケース
