@@ -520,8 +520,8 @@ def send_command(agent: str, message: str, list: bool):
             )
             sys.exit(1)
 
-        # Create communicator
-        communicator = AgentCommunicator(config.tmux.session_name, work_dir)
+        # Create communicator with agent type
+        communicator = AgentCommunicator(config.tmux.session_name, work_dir, config.agent_type)
 
         if list:
             # List all available agents

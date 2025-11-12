@@ -17,17 +17,23 @@ logger = logging.getLogger(__name__)
 class AgentCommunicator:
     """Handles agent-to-agent communication via tmux send-keys."""
 
-    def __init__(self, session_name: str, work_dir: Path):
+    def __init__(self, session_name: str, work_dir: Path, agent_type: str = "claude"):
         """Initialize AgentCommunicator.
 
         Args:
             session_name: Name of the tmux session
             work_dir: Path to .hephaestus-work directory
+            agent_type: Type of agent ('claude', 'gemini', 'codex')
         """
         self.session_name = session_name
         self.work_dir = work_dir
+        self.agent_type = agent_type
         self.log_file = work_dir / "logs" / "communication.log"
         self.log_file.parent.mkdir(parents=True, exist_ok=True)
+
+        # Communication directory for Codex (file-based communication)
+        self.comm_dir = work_dir / "communication"
+        self.comm_dir.mkdir(parents=True, exist_ok=True)
 
     def get_pane_target(self, agent_name: str) -> Optional[str]:
         """Get tmux pane target for an agent.
@@ -84,6 +90,10 @@ class AgentCommunicator:
     def send_message(self, target_agent: str, message: str, delay: float = 0.5) -> bool:
         """Send a message to an agent's chat pane.
 
+        Uses tmux send-keys with agent-type specific flags:
+        - Claude/Gemini: Standard send-keys (interprets key names)
+        - Codex: send-keys -l (literal UTF-8 characters)
+
         Args:
             target_agent: Target agent name (e.g., "worker-1")
             message: Message to send
@@ -92,24 +102,51 @@ class AgentCommunicator:
         Returns:
             True if message was sent successfully, False otherwise
         """
+        return self._send_message_via_tmux(target_agent, message, delay)
+
+    def _send_message_via_tmux(self, target_agent: str, message: str, delay: float = 0.5) -> bool:
+        """Send message via tmux send-keys.
+
+        For Codex agents, uses -l flag for literal UTF-8 character input.
+        For Claude/Gemini agents, uses standard send-keys.
+
+        Args:
+            target_agent: Target agent name
+            message: Message to send
+            delay: Delay between commands in seconds
+
+        Returns:
+            True if message was sent successfully
+        """
         target = self.get_pane_target(target_agent)
         if not target:
             logger.error(f"Cannot send message: target agent {target_agent} not found")
             return False
 
         try:
-            # Step 1: Clear any existing input with Ctrl+C
-            subprocess.run(
-                ["tmux", "send-keys", "-t", target, "C-c"],
-                check=True
-            )
-            time.sleep(delay)
+            # Step 1: Clear any existing input with Ctrl+C (only for Claude/Gemini)
+            if self.agent_type != "codex":
+                subprocess.run(
+                    ["tmux", "send-keys", "-t", target, "C-c"],
+                    check=True
+                )
+                time.sleep(delay)
 
             # Step 2: Send the message
-            subprocess.run(
-                ["tmux", "send-keys", "-t", target, message],
-                check=True
-            )
+            if self.agent_type == "codex":
+                # For Codex: Use -l flag for literal UTF-8 characters
+                # This prevents interpretation of special characters and key names
+                # No Ctrl+C needed as Codex composer handles input append
+                subprocess.run(
+                    ["tmux", "send-keys", "-l", "-t", target, message],
+                    check=True
+                )
+            else:
+                # For Claude/Gemini: Use standard send-keys
+                subprocess.run(
+                    ["tmux", "send-keys", "-t", target, message],
+                    check=True
+                )
             time.sleep(delay)
 
             # Step 3: Press Enter to execute
@@ -121,11 +158,51 @@ class AgentCommunicator:
             # Log the communication
             self._log_communication("master", target_agent, message)
 
-            logger.info(f"Sent message to {target_agent}: {message[:50]}...")
+            logger.info(f"Sent message to {target_agent} via tmux: {message[:50]}...")
             return True
 
         except subprocess.CalledProcessError as e:
-            logger.error(f"Failed to send message to {target_agent}: {e}")
+            logger.error(f"Failed to send message to {target_agent} via tmux: {e}")
+            return False
+
+    def _send_message_via_file(self, target_agent: str, message: str) -> bool:
+        """Send message via file system (for Codex).
+
+        Creates a message file that the target agent should monitor.
+
+        Args:
+            target_agent: Target agent name
+            message: Message to send
+
+        Returns:
+            True if message file was created successfully
+        """
+        try:
+            # Create agent-specific inbox directory
+            inbox_dir = self.comm_dir / f"{target_agent}_inbox"
+            inbox_dir.mkdir(parents=True, exist_ok=True)
+
+            # Create timestamped message file
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            message_file = inbox_dir / f"message_{timestamp}.md"
+
+            # Write message to file
+            with open(message_file, "w", encoding="utf-8") as f:
+                f.write(f"# Message for {target_agent}\n\n")
+                f.write(f"**From**: Master Agent\n")
+                f.write(f"**Time**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+                f.write(f"## Message Content\n\n")
+                f.write(message)
+                f.write("\n")
+
+            # Log the communication
+            self._log_communication("master", target_agent, f"[FILE] {message}")
+
+            logger.info(f"Sent message to {target_agent} via file: {message_file}")
+            return True
+
+        except Exception as e:
+            logger.error(f"Failed to send message to {target_agent} via file: {e}")
             return False
 
     def send_task_notification(self, target_agent: str, task_file: Path, comm_file: Path) -> bool:
