@@ -96,8 +96,8 @@ def test_end_to_end_with_codex_agent(tmp_path: Path) -> None:
 
     # Verify codex configuration
     assert config.agent_type == "codex"
-    assert config.master.command == "codex --full-auto"
-    assert config.workers.command == "codex --full-auto"
+    assert config.master.command == "codex --dangerously-bypass-approvals-and-sandbox"
+    assert config.workers.command == "codex --dangerously-bypass-approvals-and-sandbox"
 
     # Verify AGENT.md files exist
     agent_dir = work_dir / get_agent_directory_name("codex")

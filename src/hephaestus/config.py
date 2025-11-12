@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 AGENT_COMMANDS = {
     "claude": "claude --dangerously-skip-permissions",
     "gemini": "gemini --yolo",
-    "codex": "codex --full-auto",
+    "codex": "codex --dangerously-bypass-approvals-and-sandbox",
 }
 
 # Agent type README file mappings

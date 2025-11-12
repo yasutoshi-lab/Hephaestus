@@ -154,12 +154,12 @@ tmux:
 **エージェントタイプ別のコマンド:**
 - `claude`: `claude --dangerously-skip-permissions`
 - `gemini`: `gemini --yolo`
-- `codex`: `codex --full-auto`
+- `codex`: `codex --dangerously-bypass-approvals-and-sandbox`
 
 **技術的注記 - ペルソナ注入方式:**
 各エージェントタイプは起動時のペルソナ注入方式が異なります：
 - **Claude Code / Gemini CLI**: エージェント起動後、3秒待機してから`echo`コマンド経由でペルソナを注入
-- **ChatGPT Codex**: 起動時に引数としてペルソナを渡す（一時スクリプトファイル経由で`codex "PERSONA" --full-auto`として実行）
+- **ChatGPT Codex**: 起動時に引数としてペルソナを渡す（一時スクリプトファイル経由で`codex "PERSONA" --dangerously-bypass-approvals-and-sandbox`として実行）
 
 ## コマンド
 

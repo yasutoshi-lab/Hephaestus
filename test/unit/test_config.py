@@ -109,6 +109,5 @@ def test_create_default_config_with_codex_agent() -> None:
         config_path = Path(tmp_dir) / "config.yaml"
         config = create_default_config(config_path, agent_type="codex")
         assert config.agent_type == "codex"
-        assert config.master.command == "codex --full-auto"
-        assert config.workers.command == "codex --full-auto"
-
+        assert config.master.command == "codex --dangerously-bypass-approvals-and-sandbox"
+        assert config.workers.command == "codex --dangerously-bypass-approvals-and-sandbox"

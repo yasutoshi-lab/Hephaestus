@@ -156,12 +156,12 @@ tmux:
 **Commands by Agent Type:**
 - `claude`: `claude --dangerously-skip-permissions`
 - `gemini`: `gemini --yolo`
-- `codex`: `codex --full-auto`
+- `codex`: `codex --dangerously-bypass-approvals-and-sandbox`
 
 **Technical Note - Persona Injection Methods:**
 Each agent type uses a different persona injection approach at startup:
 - **Claude Code / Gemini CLI**: After agent startup, waits 3 seconds then injects persona via `echo` commands
-- **ChatGPT Codex**: Passes persona as a command-line argument at startup (executed as `codex "PERSONA" --full-auto` via temporary script file)
+- **ChatGPT Codex**: Passes persona as a command-line argument at startup (executed as `codex "PERSONA" --dangerously-bypass-approvals-and-sandbox` via temporary script file)
 
 ## Commands
 

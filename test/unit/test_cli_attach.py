@@ -93,7 +93,7 @@ def test_attach_changes_agent_and_creates_session(tmp_path: Path, monkeypatch: p
 
     config = ConfigManager(work_dir / "config.yaml").load()
     assert config.agent_type == "codex"
-    assert config.master.command == "codex --full-auto"
+    assert config.master.command == "codex --dangerously-bypass-approvals-and-sandbox"
     codex_dir = work_dir / get_agent_directory_name("codex")
     assert codex_dir.exists()
     assert (codex_dir / "master" / "AGENT.md").exists()
