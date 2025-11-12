@@ -46,7 +46,7 @@ A tmux-based multi-agent CLI tool for managing multiple LLM agents (Master + Wor
 ## Use Cases
 
 - Research
-- Small- to Medium-Scale System Development
+- Medium-Scale System Development
 - Refactoring
 
 ## Installation
