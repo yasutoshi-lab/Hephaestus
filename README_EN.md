@@ -15,8 +15,9 @@ A tmux-based multi-agent CLI tool for managing multiple LLM agents (Master + Wor
 - **Tmux Integration**: Visual management of multiple agents in split panes
 - **Headless Fallback**: Automatically switches to a background/headless runner when tmux is unavailable, with log streaming + status panel
 - **Automatic Task Distribution**: Markdown-based file communication for task assignment
-- **Enforced Communication Protocol**: Reliable inter-agent communication using `hephaestus send`
-
+- **Dual communication protocol**: Agent-to-Agent communication is established using `hephaestus send` and Markdown files.
+- **Self-contained**: Work is completed in the `.hephaestus-work` directory created by `hephaestus init`.
+  
 ## UI
 
 **Image Sample**  
