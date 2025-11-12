@@ -28,15 +28,23 @@
 - Python 3.10以上
 - tmux（推奨。利用できない場合は自動的にヘッドレスモードに切り替わります）
 - 以下のいずれかのAIエージェント:
-  - [Claude Code](https://github.com/anthropics/claude-code)
-  - [Gemini CLI](https://github.com/google/gemini-cli)
-  - [ChatGPT Codex](https://chatgpt.com/codex)
-- Linuxオペレーティングシステム
+  - [Claude Code](https://github.com/anthropics/claude-code) 
+  - [Gemini CLI](https://github.com/google/gemini-cli) 
+  - [ChatGPT Codex](https://chatgpt.com/codex) 
+- Linuxオペレーティングシステム 
+
+## 確認済環境
+
+- OS: Ubuntu24.04.5
+- tmux: 3.2a
+- Claude-Code: v0.57.0  
+- Gemini-CLI: v0.14.0  
+- Codex-CLI: v2.0.37 
 
 ## ユースケース
 
 - 調査研究
-- 小規模〜中規模のシステム開発
+- 中規模のシステム開発
 - リファクタリング
 
 ## インストール
